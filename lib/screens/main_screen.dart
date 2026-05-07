@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import '../data/profiles_data.dart';
 import '../models/models.dart';
 import 'home/home_page.dart';
-import 'projects/ai_page.dart';
 import 'messages/messages_page.dart';
 import 'notifications/notifications_page.dart';
-import 'profile/profile_page.dart';
+import 'AI/ai.dart';
 import 'projects/projects_page.dart';
+import 'profile/profile_page.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -146,7 +146,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final pages = [
+    final List<Widget> pages = [
       const HomePage(),
       ProjectsPage(
         allProfiles: kAllProfiles,
@@ -155,14 +155,14 @@ class _MainScreenState extends State<MainScreen> {
         onBookmark: _toggleBookmark,
         onCollaborate: _addCollaboration,
       ),
-      AI(),
+      const AIPage(),
       MessagesPage(
         allProfiles: kAllProfiles,
         collaborated: _collaborated,
         conversations: _conversations,
         onSendMessage: _onSendMessage,
       ),
-      const ProfilePage(),
+      ProfilePage(),
     ];
 
     return Scaffold(
@@ -190,7 +190,7 @@ class _MainScreenState extends State<MainScreen> {
                 label: "Projects",
                 index: 1),
                 _navItem(
-                icon: Icons.ai_outlined,
+                icon: Icons.auto_awesome_outlined,
                 label: "AI ",
                 index: 2),
             _navItem(

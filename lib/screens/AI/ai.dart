@@ -25,14 +25,14 @@ class FeatureItem {
 // ─────────────────────────────────────────────
 //  HOME PAGE
 // ─────────────────────────────────────────────
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class AIPage extends StatefulWidget {
+  const AIPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<AIPage> createState() => _AIPageState();
 }
 
-class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+class _AIPageState extends State<AIPage> with TickerProviderStateMixin {
   late final AnimationController _heroCtrl;
   late final AnimationController _filmStripCtrl;
   late final AnimationController _pulseCtrl;
