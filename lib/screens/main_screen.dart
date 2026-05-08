@@ -16,7 +16,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _currentIndex = 1;
+  int _currentIndex = 0;
 
   // ── Shared state ─────────────────────────────────────────────────────
   final Set<int> _bookmarked = {};
@@ -147,7 +147,12 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> pages = [
-      const HomePage(),
+      // ── Home: pass allProfiles for search + messages nav + unread count ──
+      HomePage(
+        allProfiles: kAllProfiles,
+        onNavigateToMessages: () => setState(() => _currentIndex = 3),
+        unreadMessages: _unreadMessageCount,
+      ),
       ProjectsPage(
         allProfiles: kAllProfiles,
         bookmarked: _bookmarked,
@@ -189,9 +194,9 @@ class _MainScreenState extends State<MainScreen> {
                 icon: Icons.movie_creation_outlined,
                 label: "Projects",
                 index: 1),
-                _navItem(
+            _navItem(
                 icon: Icons.auto_awesome_outlined,
-                label: "AI ",
+                label: "AI",
                 index: 2),
             _navItem(
                 icon: Icons.message_outlined,
