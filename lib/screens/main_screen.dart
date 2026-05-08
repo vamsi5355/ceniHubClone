@@ -7,6 +7,7 @@ import 'notifications/notifications_page.dart';
 import 'AI/ai.dart';
 import 'projects/projects_page.dart';
 import 'profile/profile_page.dart';
+import 'jobs/jobs_page.dart'; // ← add this import (create the file if needed)
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -146,13 +147,25 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // ─────────────────────────────────────────────────────────
+    //  PAGE INDEX MAP
+    //  0 → Home
+    //  1 → Projects
+    //  2 → AI
+    //  3 → Jobs        ← NEW (replaces Messages in bottom nav)
+    //  4 → Profile
+    //  5 → Messages    ← hidden from nav; opened via home header button
+    // ─────────────────────────────────────────────────────────
     final List<Widget> pages = [
-      // ── Home: pass allProfiles for search + messages nav + unread count ──
+      // ── 0: Home ──────────────────────────────────────────────
       HomePage(
         allProfiles: kAllProfiles,
-        onNavigateToMessages: () => setState(() => _currentIndex = 3),
+        // Messages is now at index 5 in the stack
+        onNavigateToMessages: () => setState(() => _currentIndex = 5),
         unreadMessages: _unreadMessageCount,
       ),
+
+      // ── 1: Projects ──────────────────────────────────────────
       ProjectsPage(
         allProfiles: kAllProfiles,
         bookmarked: _bookmarked,
@@ -160,14 +173,23 @@ class _MainScreenState extends State<MainScreen> {
         onBookmark: _toggleBookmark,
         onCollaborate: _addCollaboration,
       ),
+
+      // ── 2: AI ────────────────────────────────────────────────
       const AIPage(),
+
+      // ── 3: Jobs (NEW) ────────────────────────────────────────
+      const JobsPage(),
+
+      // ── 4: Profile ───────────────────────────────────────────
+      ProfilePage(),
+
+      // ── 5: Messages (hidden from bottom nav) ─────────────────
       MessagesPage(
         allProfiles: kAllProfiles,
         collaborated: _collaborated,
         conversations: _conversations,
         onSendMessage: _onSendMessage,
       ),
-      ProfilePage(),
     ];
 
     return Scaffold(
@@ -189,24 +211,45 @@ class _MainScreenState extends State<MainScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _navItem(icon: Icons.home_rounded, label: "Home", index: 0),
+            // ── 0: Home ────────────────────────────────────────
             _navItem(
-                icon: Icons.movie_creation_outlined,
-                label: "Projects",
-                index: 1),
+              icon: Icons.home_rounded,
+              label: "Home",
+              index: 0,
+            ),
+
+            // ── 1: Projects ────────────────────────────────────
             _navItem(
-                icon: Icons.auto_awesome_outlined,
-                label: "AI",
-                index: 2),
+              icon: Icons.movie_creation_outlined,
+              label: "Projects",
+              index: 1,
+            ),
+
+            // ── 2: AI ──────────────────────────────────────────
             _navItem(
-                icon: Icons.message_outlined,
-                label: "Messages",
-                index: 3,
-                badge: _unreadMessageCount),
+              icon: Icons.auto_awesome_outlined,
+              label: "AI",
+              index: 2,
+            ),
+
+            // ── 3: Jobs (NEW) ──────────────────────────────────
             _navItem(
-                icon: Icons.person_outline_rounded,
-                label: "Profile",
-                index: 4),
+              icon: Icons.work_outline_rounded,
+              label: "Jobs",
+              index: 3,
+            ),
+
+            // ── 4: Profile ─────────────────────────────────────
+            _navItem(
+              icon: Icons.person_outline_rounded,
+              label: "Profile",
+              index: 4,
+            ),
+
+            // NOTE: Messages (index 5) is intentionally NOT listed
+            // here. It is accessed via the envelope icon in the
+            // Home screen header, which calls onNavigateToMessages
+            // → _currentIndex = 5.
           ],
         ),
       ),
@@ -219,7 +262,11 @@ class _MainScreenState extends State<MainScreen> {
     required int index,
     int badge = 0,
   }) {
+    // Consider "selected" only for the 5 visible bottom-nav tabs (0–4).
+    // When Messages (index 5) is open, no bottom tab lights up — which
+    // is the correct behaviour since it has no bottom nav entry.
     final bool sel = _currentIndex == index;
+
     return GestureDetector(
       onTap: () => setState(() => _currentIndex = index),
       child: Stack(
@@ -242,9 +289,11 @@ class _MainScreenState extends State<MainScreen> {
                 Icon(icon, color: Colors.white),
                 if (sel) ...[
                   const SizedBox(width: 6),
-                  Text(label,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 13)),
+                  Text(
+                    label,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 13),
+                  ),
                 ],
               ],
             ),
@@ -261,9 +310,11 @@ class _MainScreenState extends State<MainScreen> {
                   color: Color(0xffFF3D00),
                 ),
                 child: Center(
-                  child: Text('$badge',
-                      style: const TextStyle(
-                          fontSize: 9, fontWeight: FontWeight.w800)),
+                  child: Text(
+                    '$badge',
+                    style: const TextStyle(
+                        fontSize: 9, fontWeight: FontWeight.w800),
+                  ),
                 ),
               ),
             ),

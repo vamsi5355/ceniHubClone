@@ -128,19 +128,25 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _pageCtrl = PageController();
-    _shimmer = AnimationController(vsync: this, duration: const Duration(milliseconds: 1500))..repeat();
-    _pulse = AnimationController(vsync: this, duration: const Duration(milliseconds: 1800))..repeat(reverse: true);
+    _shimmer = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 1500))
+      ..repeat();
+    _pulse = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 1800))
+      ..repeat(reverse: true);
     _posts = _buildPosts();
     _scrollCtrl.addListener(_onScroll);
     _startAutoScroll();
   }
 
   void _startAutoScroll() {
-    _autoTimer = Timer.periodic(const Duration(seconds: 3, milliseconds: 500), (_) {
+    _autoTimer =
+        Timer.periodic(const Duration(seconds: 3, milliseconds: 500), (_) {
       if (!mounted || !_pageCtrl.hasClients) return;
       final next = (_page + 1) % _featured.length;
       _pageCtrl.animateToPage(next,
-          duration: const Duration(milliseconds: 650), curve: Curves.easeInOutCubic);
+          duration: const Duration(milliseconds: 650),
+          curve: Curves.easeInOutCubic);
     });
   }
 
@@ -182,56 +188,97 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     final rng = Random(seed);
     final data = [
       (
-        name: 'Meera Krishnan', handle: '@meera.lens',
-        body: 'Just wrapped our 21-day shoot across Kerala backwaters 🎬\n\nEvery frame felt like a painting. Submitting to MAMI — fingers crossed! 🙏',
-        img: 'BACKWATERS · Kerala', genre: 'Drama',
+        name: 'Meera Krishnan',
+        handle: '@meera.lens',
+        body:
+            'Just wrapped our 21-day shoot across Kerala backwaters 🎬\n\nEvery frame felt like a painting. Submitting to MAMI — fingers crossed! 🙏',
+        img: 'BACKWATERS · Kerala',
+        genre: 'Drama',
         tags: ['#IndieFilm', '#Kerala', '#MAMI2025'],
-        color: const Color(0xFF7C3AED), v: true, f: true, views: 42800
+        color: const Color(0xFF7C3AED),
+        v: true,
+        f: true,
+        views: 42800
       ),
       (
-        name: 'Arjun Mehta', handle: '@arjun.director',
-        body: 'Acting tip that changed everything:\n\nStop trying to "act" — start trying to "live" in the scene. Your body knows what to do when your mind gets out of the way. 🎭',
-        img: null, genre: null,
+        name: 'Arjun Mehta',
+        handle: '@arjun.director',
+        body:
+            'Acting tip that changed everything:\n\nStop trying to "act" — start trying to "live" in the scene. Your body knows what to do when your mind gets out of the way. 🎭',
+        img: null,
+        genre: null,
         tags: ['#ActingTips', '#FilmIndustry'],
-        color: const Color(0xFF1D4ED8), v: true, f: false, views: 19200
+        color: const Color(0xFF1D4ED8),
+        v: true,
+        f: false,
+        views: 19200
       ),
       (
-        name: 'Priya Nair Films', handle: '@priya.nair.films',
-        body: 'OPEN CALL: Casting for psychological thriller "The Last Signal"\n\n• Lead actress (25–35)\n• Supporting cast (any age)\n• Raw talent welcome 🎬',
-        img: 'CASTING ROOM · Mumbai', genre: 'Thriller',
+        name: 'Priya Nair Films',
+        handle: '@priya.nair.films',
+        body:
+            'OPEN CALL: Casting for psychological thriller "The Last Signal"\n\n• Lead actress (25–35)\n• Supporting cast (any age)\n• Raw talent welcome 🎬',
+        img: 'CASTING ROOM · Mumbai',
+        genre: 'Thriller',
         tags: ['#Casting', '#OpenCall', '#Mumbai'],
-        color: const Color(0xFFBE185D), v: false, f: true, views: 88500
+        color: const Color(0xFFBE185D),
+        v: false,
+        f: true,
+        views: 88500
       ),
       (
-        name: 'Ravi Sharma DOP', handle: '@ravi_dop',
-        body: 'Golden hour in Rajasthan is something else entirely ☀️\n\n4am call time. 3 minutes of magic. The Thar desert has a soul.',
-        img: 'GOLDEN HOUR · Thar Desert', genre: 'Documentary',
+        name: 'Ravi Sharma DOP',
+        handle: '@ravi_dop',
+        body:
+            'Golden hour in Rajasthan is something else entirely ☀️\n\n4am call time. 3 minutes of magic. The Thar desert has a soul.',
+        img: 'GOLDEN HOUR · Thar Desert',
+        genre: 'Documentary',
         tags: ['#Cinematography', '#GoldenHour', '#ARRI'],
-        color: const Color(0xFF92400E), v: true, f: true, views: 31600
+        color: const Color(0xFF92400E),
+        v: true,
+        f: true,
+        views: 31600
       ),
       (
-        name: 'Aisha Kapoor', handle: '@aisha.scripts',
-        body: 'My screenplay "Lighthouse" just placed top 10 at Nicholl Fellowship 🏆\n\nThree years of rewrites. 47 drafts. Countless rejections. And here we are. ✍️',
-        img: null, genre: 'Thriller',
+        name: 'Aisha Kapoor',
+        handle: '@aisha.scripts',
+        body:
+            'My screenplay "Lighthouse" just placed top 10 at Nicholl Fellowship 🏆\n\nThree years of rewrites. 47 drafts. Countless rejections. And here we are. ✍️',
+        img: null,
+        genre: 'Thriller',
         tags: ['#Screenwriting', '#NichollFellowship'],
-        color: const Color(0xFF0369A1), v: true, f: false, views: 24100
+        color: const Color(0xFF0369A1),
+        v: true,
+        f: false,
+        views: 24100
       ),
       (
-        name: 'Lucas Fernandez', handle: '@lucas.frames',
-        body: 'Built our entire VFX pipeline in Blender for under ₹5000 💻\n\nIndie doesn\'t mean low quality — it means creative problem solving. Full tutorial dropping this weekend 🔥',
-        img: 'VFX BREAKDOWN · Blender', genre: 'Sci-Fi',
+        name: 'Lucas Fernandez',
+        handle: '@lucas.frames',
+        body:
+            'Built our entire VFX pipeline in Blender for under ₹5000 💻\n\nIndie doesn\'t mean low quality — it means creative problem solving. Full tutorial dropping this weekend 🔥',
+        img: 'VFX BREAKDOWN · Blender',
+        genre: 'Sci-Fi',
         tags: ['#VFX', '#Blender', '#IndieFilm'],
-        color: const Color(0xFF065F46), v: false, f: true, views: 56300
+        color: const Color(0xFF065F46),
+        v: false,
+        f: true,
+        views: 56300
       ),
     ];
     return List.generate(data.length, (i) {
       final d = data[(i + seed ~/ data.length) % data.length];
       return _Post(
-        name: d.name, handle: d.handle,
+        name: d.name,
+        handle: d.handle,
         ago: '${rng.nextInt(22) + 1}h',
-        body: d.body, imageLabel: d.img,
-        avatarColor: d.color, verified: d.v, filmmaker: d.f,
-        genre: d.genre, tags: d.tags,
+        body: d.body,
+        imageLabel: d.img,
+        avatarColor: d.color,
+        verified: d.v,
+        filmmaker: d.f,
+        genre: d.genre,
+        tags: d.tags,
         likes: rng.nextInt(9800) + 500,
         comments: rng.nextInt(980) + 40,
         shares: rng.nextInt(490) + 20,
@@ -244,12 +291,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   List<ProfileData> get _searchResults {
     if (_query.isEmpty) return [];
     final q = _query.toLowerCase();
-    return widget.allProfiles.where((p) =>
-      p.name.toLowerCase().contains(q) ||
-      p.role.toLowerCase().contains(q) ||
-      p.skills.any((s) => s.toLowerCase().contains(q)) ||
-      p.type.toLowerCase().contains(q),
-    ).toList();
+    return widget.allProfiles
+        .where((p) =>
+            p.name.toLowerCase().contains(q) ||
+            p.role.toLowerCase().contains(q) ||
+            p.skills.any((s) => s.toLowerCase().contains(q)) ||
+            p.type.toLowerCase().contains(q))
+        .toList();
   }
 
   @override
@@ -296,7 +344,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           parent: AlwaysScrollableScrollPhysics()),
                       slivers: [
                         // Spacer so content starts below search bar
-                        const SliverToBoxAdapter(child: SizedBox(height: 68)),
+                        const SliverToBoxAdapter(
+                            child: SizedBox(height: 68)),
 
                         // Featured Carousel
                         SliverToBoxAdapter(child: _buildCarousel()),
@@ -325,11 +374,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     HapticFeedback.lightImpact();
                                   }),
                                   onBookmark: () {
-                                    setState(() => p.bookmarked = !p.bookmarked);
+                                    setState(
+                                        () => p.bookmarked = !p.bookmarked);
                                     HapticFeedback.selectionClick();
                                   },
-                                  onFollow: () =>
-                                      setState(() => p.following = !p.following),
+                                  onFollow: () => setState(
+                                      () => p.following = !p.following),
                                 );
                               },
                               childCount: _posts.length + 1,
@@ -349,7 +399,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       child: _buildProfileResults(),
                     ),
 
-                  // ── Floating search bar (like ProjectsPage) ───
+                  // ── Floating search bar ───────────────────────
                   Positioned(
                     top: 8,
                     right: 20,
@@ -415,11 +465,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 child: TextField(
                   controller: _searchCtrl,
                   onChanged: (v) => setState(() => _query = v),
-                  style: const TextStyle(color: _C.textPrimary, fontSize: 13),
+                  style: const TextStyle(
+                      color: _C.textPrimary, fontSize: 13),
                   decoration: const InputDecoration(
                     border: InputBorder.none,
                     hintText: 'Search films, directors, talent...',
-                    hintStyle: TextStyle(color: _C.textMuted, fontSize: 13),
+                    hintStyle:
+                        TextStyle(color: _C.textMuted, fontSize: 13),
                     isDense: true,
                   ),
                 ),
@@ -436,7 +488,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               IconButton(
                 icon: Icon(Icons.chevron_right_rounded,
                     color: _C.textSec.withOpacity(0.6)),
-                onPressed: () => setState(() => _searchExpanded = false),
+                onPressed: () =>
+                    setState(() => _searchExpanded = false),
               ),
             ],
           ),
@@ -468,8 +521,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(Icons.search_off_rounded,
-                      size: 52,
-                      color: _C.textMuted.withOpacity(0.4)),
+                      size: 52, color: _C.textMuted.withOpacity(0.4)),
                   const SizedBox(height: 12),
                   Text(
                     'No profiles found for "$_query"',
@@ -481,7 +533,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   const SizedBox(height: 6),
                   const Text(
                     'Try searching by name, role or skill',
-                    style: TextStyle(color: _C.textMuted, fontSize: 12),
+                    style:
+                        TextStyle(color: _C.textMuted, fontSize: 12),
                   ),
                 ],
               ),
@@ -499,55 +552,73 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 
   // ── Header ──────────────────────────────────────────────────
+  //
+  //  ╔══════════════════════════════════════════════════════════╗
+  //  ║  CHANGE: LIVE badge → + (Create Post) button            ║
+  //  ╚══════════════════════════════════════════════════════════╝
   Widget _buildHeader() {
     return Container(
       color: _C.bg,
       padding: const EdgeInsets.fromLTRB(16, 10, 16, 8),
       child: Row(
         children: [
-          // Pulsing LIVE badge
-          AnimatedBuilder(
-            animation: _pulse,
-            builder: (_, __) => Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          // ── + Create Post button (replaces LIVE badge) ──────
+          GestureDetector(
+            onTap: () {
+              HapticFeedback.mediumImpact();
+              // TODO: Replace with your actual PostPage navigation, e.g.:
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(builder: (_) => const PostPage()),
+              // );
+              _showCreatePostSheet(context);
+            },
+            child: Container(
+              width: 38,
+              height: 38,
               decoration: BoxDecoration(
-                color: _C.rose.withOpacity(0.1 + _pulse.value * 0.08),
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(
-                    color: _C.rose.withOpacity(0.3 + _pulse.value * 0.3),
-                    width: 0.8),
+                gradient: const LinearGradient(
+                  colors: [_C.accent, Color(0xFF9B4FE0)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: _C.accent.withOpacity(0.35),
+                    blurRadius: 12,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
               ),
-              child: Row(mainAxisSize: MainAxisSize.min, children: [
-                Container(
-                    width: 6,
-                    height: 6,
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle, color: _C.rose)),
-                const SizedBox(width: 5),
-                const Text('LIVE',
-                    style: TextStyle(
-                        color: _C.rose,
-                        fontSize: 9,
-                        fontWeight: FontWeight.w900,
-                        letterSpacing: 1.5)),
-              ]),
+              child: const Icon(
+                Icons.add_rounded,
+                color: Colors.white,
+                size: 22,
+              ),
             ),
           ),
+
           const SizedBox(width: 10),
+
+          // ── App name ────────────────────────────────────────
           ShaderMask(
             shaderCallback: (b) =>
                 const LinearGradient(colors: [_C.accentSoft, _C.rose])
                     .createShader(b),
-            child: const Text('CineHub',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 26,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: -1.2)),
+            child: const Text(
+              'CineHub',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 26,
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: -1.2),
+            ),
           ),
+
           const Spacer(),
 
-          // Messages — navigates to Messages tab
+          // ── Messages button (navigates to Messages tab) ─────
           _HeaderBtn(
             icon: Icons.chat_bubble_outline_rounded,
             badge: widget.unreadMessages,
@@ -558,10 +629,21 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           ),
           const SizedBox(width: 8),
 
-          // Notifications
+          // ── Notifications ───────────────────────────────────
           _HeaderBtn(icon: Icons.notifications_none_rounded, badge: 7),
         ],
       ),
+    );
+  }
+
+  // ── Create Post bottom sheet ────────────────────────────────
+  //  Replace this with a full-screen PostPage push if you prefer.
+  void _showCreatePostSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => const _CreatePostSheet(),
     );
   }
 
@@ -603,8 +685,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 style: TextStyle(
                   color: sel ? Colors.white : _C.textSec,
                   fontSize: 12,
-                  fontWeight:
-                      sel ? FontWeight.w700 : FontWeight.w500,
+                  fontWeight: sel ? FontWeight.w700 : FontWeight.w500,
                 ),
               ),
             ),
@@ -625,8 +706,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             controller: _pageCtrl,
             onPageChanged: (p) => setState(() => _page = p),
             itemCount: _featured.length,
-            itemBuilder: (_, i) =>
-                _FeaturedCard(featured: _featured[i], pageController: _pageCtrl, pageIndex: i),
+            itemBuilder: (_, i) => _FeaturedCard(
+                featured: _featured[i],
+                pageController: _pageCtrl,
+                pageIndex: i),
           ),
         ),
         const SizedBox(height: 10),
@@ -711,7 +794,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         final s = LinearGradient(
           begin: Alignment(-1.5 + _shimmer.value * 3, 0),
           end: Alignment(0.5 + _shimmer.value * 3, 0),
-          colors: const [Color(0xFF111120), Color(0xFF1A1A2E), Color(0xFF111120)],
+          colors: const [
+            Color(0xFF111120),
+            Color(0xFF1A1A2E),
+            Color(0xFF111120)
+          ],
         );
         return Container(
           margin: const EdgeInsets.only(bottom: 2),
@@ -723,28 +810,306 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 Container(
                     width: 42,
                     height: 42,
-                    decoration: BoxDecoration(shape: BoxShape.circle, gradient: s)),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle, gradient: s)),
                 const SizedBox(width: 12),
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Container(
-                      width: 130,
-                      height: 11,
-                      decoration: BoxDecoration(
-                          gradient: s, borderRadius: BorderRadius.circular(5))),
-                  const SizedBox(height: 6),
-                  Container(
-                      width: 90,
-                      height: 9,
-                      decoration: BoxDecoration(
-                          gradient: s, borderRadius: BorderRadius.circular(5))),
-                ]),
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                          width: 130,
+                          height: 11,
+                          decoration: BoxDecoration(
+                              gradient: s,
+                              borderRadius: BorderRadius.circular(5))),
+                      const SizedBox(height: 6),
+                      Container(
+                          width: 90,
+                          height: 9,
+                          decoration: BoxDecoration(
+                              gradient: s,
+                              borderRadius: BorderRadius.circular(5))),
+                    ]),
               ]),
             ),
-            Container(height: 280, decoration: BoxDecoration(gradient: s)),
+            Container(
+                height: 280, decoration: BoxDecoration(gradient: s)),
             const SizedBox(height: 60),
           ]),
         );
       },
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+//  CREATE POST BOTTOM SHEET
+//  ╔══════════════════════════════════════════════════════════╗
+//  ║  NEW: shown when + button is tapped                     ║
+//  ║  Replace with a full PostPage push if you prefer        ║
+//  ╚══════════════════════════════════════════════════════════╝
+// ─────────────────────────────────────────────────────────────
+class _CreatePostSheet extends StatefulWidget {
+  const _CreatePostSheet();
+
+  @override
+  State<_CreatePostSheet> createState() => _CreatePostSheetState();
+}
+
+class _CreatePostSheetState extends State<_CreatePostSheet> {
+  final _ctrl = TextEditingController();
+  String _selectedGenre = 'Drama';
+  bool _addMedia = false;
+
+  static const _genres = [
+    'Drama', 'Thriller', 'Documentary', 'Sci-Fi',
+    'Comedy', 'Horror', 'Indie', 'Festival'
+  ];
+
+  @override
+  void dispose() {
+    _ctrl.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return DraggableScrollableSheet(
+      initialChildSize: 0.75,
+      maxChildSize: 0.95,
+      minChildSize: 0.5,
+      builder: (_, scrollCtrl) => Container(
+        decoration: const BoxDecoration(
+          color: Color(0xFF0C0C18),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
+        ),
+        child: Column(
+          children: [
+            // ── Handle ────────────────────────────────────────
+            const SizedBox(height: 12),
+            Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: const Color(0xFF2A2A3E),
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            // ── Title bar ─────────────────────────────────────
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                          colors: [_C.accent, Color(0xFF9B4FE0)]),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Icon(Icons.edit_rounded,
+                        color: Colors.white, size: 16),
+                  ),
+                  const SizedBox(width: 12),
+                  const Text(
+                    'Create Post',
+                    style: TextStyle(
+                        color: _C.textPrimary,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w800),
+                  ),
+                  const Spacer(),
+                  GestureDetector(
+                    onTap: () => Navigator.pop(context),
+                    child: Container(
+                      width: 32,
+                      height: 32,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF1A1A2E),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: const Icon(Icons.close_rounded,
+                          color: _C.textSec, size: 18),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            // ── Scrollable body ───────────────────────────────
+            Expanded(
+              child: ListView(
+                controller: scrollCtrl,
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                children: [
+                  // Text field
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF111120),
+                      borderRadius: BorderRadius.circular(18),
+                      border: Border.all(
+                          color: const Color(0xFF1A1A2E), width: 0.8),
+                    ),
+                    child: TextField(
+                      controller: _ctrl,
+                      maxLines: 5,
+                      style: const TextStyle(
+                          color: _C.textPrimary, fontSize: 14, height: 1.6),
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText:
+                            'Share your film journey, casting call, or behind-the-scenes moment...',
+                        hintStyle: TextStyle(
+                            color: _C.textMuted, fontSize: 14, height: 1.6),
+                        isDense: true,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+
+                  // Genre picker
+                  const Text('Genre',
+                      style: TextStyle(
+                          color: _C.textSec,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600)),
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: _genres.map((g) {
+                      final sel = g == _selectedGenre;
+                      return GestureDetector(
+                        onTap: () =>
+                            setState(() => _selectedGenre = g),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 14, vertical: 7),
+                          decoration: BoxDecoration(
+                            gradient: sel
+                                ? const LinearGradient(colors: [
+                                    _C.accent,
+                                    Color(0xFF9B4FE0)
+                                  ])
+                                : null,
+                            color: sel ? null : const Color(0xFF111120),
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                                color: sel
+                                    ? _C.accent
+                                    : const Color(0xFF1A1A2E),
+                                width: 0.8),
+                          ),
+                          child: Text(g,
+                              style: TextStyle(
+                                  color: sel ? Colors.white : _C.textSec,
+                                  fontSize: 12,
+                                  fontWeight: sel
+                                      ? FontWeight.w700
+                                      : FontWeight.w500)),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                  const SizedBox(height: 20),
+
+                  // Add media row
+                  GestureDetector(
+                    onTap: () => setState(() => _addMedia = !_addMedia),
+                    child: Container(
+                      padding: const EdgeInsets.all(14),
+                      decoration: BoxDecoration(
+                        color: _addMedia
+                            ? _C.accent.withOpacity(0.08)
+                            : const Color(0xFF111120),
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(
+                          color: _addMedia
+                              ? _C.accent.withOpacity(0.4)
+                              : const Color(0xFF1A1A2E),
+                          width: 0.8,
+                        ),
+                      ),
+                      child: Row(children: [
+                        Icon(
+                          _addMedia
+                              ? Icons.photo_rounded
+                              : Icons.add_photo_alternate_outlined,
+                          color:
+                              _addMedia ? _C.accentSoft : _C.textSec,
+                          size: 20,
+                        ),
+                        const SizedBox(width: 10),
+                        Text(
+                          _addMedia
+                              ? 'Media attached'
+                              : 'Add photo / video',
+                          style: TextStyle(
+                              color: _addMedia
+                                  ? _C.accentSoft
+                                  : _C.textSec,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        const Spacer(),
+                        if (_addMedia)
+                          const Icon(Icons.check_circle_rounded,
+                              color: _C.accent, size: 18),
+                      ]),
+                    ),
+                  ),
+                  const SizedBox(height: 28),
+
+                  // Post button
+                  GestureDetector(
+                    onTap: () {
+                      HapticFeedback.mediumImpact();
+                      Navigator.pop(context);
+                      // TODO: dispatch post creation logic here
+                    },
+                    child: Container(
+                      height: 52,
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                            colors: [_C.accent, Color(0xFF9B4FE0)]),
+                        borderRadius: BorderRadius.circular(16),
+                        boxShadow: [
+                          BoxShadow(
+                            color: _C.accent.withOpacity(0.4),
+                            blurRadius: 18,
+                            offset: const Offset(0, 6),
+                          ),
+                        ],
+                      ),
+                      child: const Center(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.send_rounded,
+                                color: Colors.white, size: 18),
+                            SizedBox(width: 8),
+                            Text('Post Now',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w800)),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 40),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -818,8 +1183,8 @@ class _SearchProfileCard extends StatelessWidget {
                   const SizedBox(height: 2),
                   Text(
                     profile.role,
-                    style: const TextStyle(
-                        color: _C.textSec, fontSize: 11),
+                    style:
+                        const TextStyle(color: _C.textSec, fontSize: 11),
                   ),
                   const SizedBox(height: 6),
                   Wrap(
@@ -837,11 +1202,10 @@ class _SearchProfileCard extends StatelessWidget {
                                     color: _C.accent.withOpacity(0.2),
                                     width: 0.6),
                               ),
-                              child: Text(
-                                s,
-                                style: const TextStyle(
-                                    color: _C.accentSoft, fontSize: 10),
-                              ),
+                              child: Text(s,
+                                  style: const TextStyle(
+                                      color: _C.accentSoft,
+                                      fontSize: 10)),
                             ))
                         .toList(),
                   ),
@@ -884,7 +1248,10 @@ class _HeaderBtn extends StatelessWidget {
   final VoidCallback? onTap;
 
   const _HeaderBtn(
-      {required this.icon, this.badge = 0, this.active = false, this.onTap});
+      {required this.icon,
+      this.badge = 0,
+      this.active = false,
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -954,7 +1321,8 @@ class _FeaturedCard extends StatelessWidget {
           value = (1 - (value.abs() * 0.12)).clamp(0.0, 1.0);
         }
         return Transform.scale(
-          scale: pageController.position.haveDimensions ? value : 1.0,
+          scale:
+              pageController.position.haveDimensions ? value : 1.0,
           child: child,
         );
       },
@@ -979,21 +1347,27 @@ class _FeaturedCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(22),
             child: Stack(children: [
               Positioned(
-                  top: -40, right: -40,
+                  top: -40,
+                  right: -40,
                   child: Container(
-                      width: 160, height: 160,
+                      width: 160,
+                      height: 160,
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: Colors.white.withOpacity(0.06)))),
               Positioned(
-                  bottom: -30, left: -30,
+                  bottom: -30,
+                  left: -30,
                   child: Container(
-                      width: 120, height: 120,
+                      width: 120,
+                      height: 120,
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: Colors.white.withOpacity(0.04)))),
               Positioned(
-                  top: 0, left: 0, right: 0,
+                  top: 0,
+                  left: 0,
+                  right: 0,
                   child: _FilmStrip(accent: featured.c1)),
               Padding(
                 padding: const EdgeInsets.fromLTRB(18, 34, 18, 16),
@@ -1002,7 +1376,8 @@ class _FeaturedCard extends StatelessWidget {
                   children: [
                     Row(children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
                           color: Colors.white.withOpacity(0.2),
                           borderRadius: BorderRadius.circular(6),
@@ -1021,52 +1396,70 @@ class _FeaturedCard extends StatelessWidget {
                           color: Colors.white.withOpacity(0.16),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: Icon(featured.icon, color: Colors.white, size: 18),
+                        child: Icon(featured.icon,
+                            color: Colors.white, size: 18),
                       ),
                     ]),
                     const Spacer(),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 3),
                       decoration: BoxDecoration(
                         color: Colors.white.withOpacity(0.14),
                         borderRadius: BorderRadius.circular(6),
                       ),
                       child: Text(featured.genre,
                           style: const TextStyle(
-                              color: Colors.white70, fontSize: 10, fontWeight: FontWeight.w600)),
+                              color: Colors.white70,
+                              fontSize: 10,
+                              fontWeight: FontWeight.w600)),
                     ),
                     const SizedBox(height: 5),
                     Text(featured.title,
                         style: const TextStyle(
-                            color: Colors.white, fontSize: 23,
-                            fontWeight: FontWeight.w900, letterSpacing: -0.6, height: 1.1)),
+                            color: Colors.white,
+                            fontSize: 23,
+                            fontWeight: FontWeight.w900,
+                            letterSpacing: -0.6,
+                            height: 1.1)),
                     const SizedBox(height: 3),
                     Text(featured.subtitle,
-                        style: TextStyle(color: Colors.white.withOpacity(0.6), fontSize: 12)),
+                        style: TextStyle(
+                            color: Colors.white.withOpacity(0.6),
+                            fontSize: 12)),
                     const SizedBox(height: 12),
                     Row(children: [
                       GestureDetector(
                         onTap: () => HapticFeedback.lightImpact(),
                         child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 9),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 9),
                           decoration: BoxDecoration(
-                              color: Colors.white, borderRadius: BorderRadius.circular(12)),
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12)),
                           child: Text(featured.cta,
                               style: TextStyle(
-                                  color: featured.c1, fontSize: 12, fontWeight: FontWeight.w800)),
+                                  color: featured.c1,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w800)),
                         ),
                       ),
                       const SizedBox(width: 10),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 9),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 9),
                         decoration: BoxDecoration(
                           color: Colors.white.withOpacity(0.14),
                           borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: Colors.white.withOpacity(0.25), width: 0.8),
+                          border: Border.all(
+                              color: Colors.white.withOpacity(0.25),
+                              width: 0.8),
                         ),
                         child: const Text('Details',
                             style: TextStyle(
-                                color: Colors.white, fontSize: 12, fontWeight: FontWeight.w700)),
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w700)),
                       ),
                     ]),
                   ],
@@ -1093,17 +1486,20 @@ class _FilmStrip extends StatelessWidget {
       height: 22,
       color: Colors.black.withOpacity(0.35),
       child: Row(
-        children: List.generate(24, (i) => Expanded(
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 1.5, vertical: 5),
-            decoration: BoxDecoration(
-              color: i % 3 == 0
-                  ? accent.withOpacity(0.5)
-                  : Colors.white.withOpacity(0.06),
-              borderRadius: BorderRadius.circular(2),
-            ),
-          ),
-        )),
+        children: List.generate(
+            24,
+            (i) => Expanded(
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 1.5, vertical: 5),
+                    decoration: BoxDecoration(
+                      color: i % 3 == 0
+                          ? accent.withOpacity(0.5)
+                          : Colors.white.withOpacity(0.06),
+                      borderRadius: BorderRadius.circular(2),
+                    ),
+                  ),
+                )),
       ),
     );
   }
@@ -1152,15 +1548,21 @@ class _InstagramPostState extends State<_InstagramPost>
     _heartCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 700));
     _fade = CurvedAnimation(parent: _entryCrl, curve: Curves.easeOut);
-    _slide = Tween(begin: const Offset(0, 0.04), end: Offset.zero)
-        .animate(CurvedAnimation(parent: _entryCrl, curve: Curves.easeOutCubic));
+    _slide =
+        Tween(begin: const Offset(0, 0.04), end: Offset.zero).animate(
+            CurvedAnimation(parent: _entryCrl, curve: Curves.easeOutCubic));
     _heartScale = TweenSequence([
-      TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.3), weight: 40),
-      TweenSequenceItem(tween: Tween(begin: 1.3, end: 1.0), weight: 30),
-      TweenSequenceItem(tween: Tween(begin: 1.0, end: 0.0), weight: 30),
-    ]).animate(CurvedAnimation(parent: _heartCtrl, curve: Curves.easeOut));
+      TweenSequenceItem(
+          tween: Tween(begin: 0.0, end: 1.3), weight: 40),
+      TweenSequenceItem(
+          tween: Tween(begin: 1.3, end: 1.0), weight: 30),
+      TweenSequenceItem(
+          tween: Tween(begin: 1.0, end: 0.0), weight: 30),
+    ]).animate(
+        CurvedAnimation(parent: _heartCtrl, curve: Curves.easeOut));
 
-    Future.delayed(Duration(milliseconds: (widget.index % 6) * 80), () {
+    Future.delayed(
+        Duration(milliseconds: (widget.index % 6) * 80), () {
       if (mounted) _entryCrl.forward();
     });
   }
@@ -1190,249 +1592,280 @@ class _InstagramPostState extends State<_InstagramPost>
         child: Container(
           margin: const EdgeInsets.only(bottom: 2),
           decoration: const BoxDecoration(color: _C.card),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            // ── Post Header ──────────────────────────────
-            Padding(
-              padding: const EdgeInsets.fromLTRB(12, 12, 8, 10),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Stack(clipBehavior: Clip.none, children: [
-                    Container(
-                      padding: const EdgeInsets.all(2),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: p.filmmaker
-                            ? LinearGradient(
-                                colors: [p.avatarColor, _C.rose],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight)
-                            : const LinearGradient(
-                                colors: [_C.cardBorder, _C.cardBorder]),
-                      ),
-                      child: Container(
-                        width: 40, height: 40,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: p.avatarColor,
-                          border: Border.all(color: _C.card, width: 2),
-                        ),
-                        child: Center(
-                            child: Text(p.name[0],
-                                style: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 17))),
-                      ),
-                    ),
-                    if (p.verified)
-                      Positioned(
-                        bottom: 0, right: 0,
-                        child: Container(
-                          width: 16, height: 16,
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // ── Post Header ──────────────────────────────
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(12, 12, 8, 10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Stack(clipBehavior: Clip.none, children: [
+                        Container(
+                          padding: const EdgeInsets.all(2),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: _C.accent,
-                            border: Border.all(color: _C.card, width: 1.5),
+                            gradient: p.filmmaker
+                                ? LinearGradient(
+                                    colors: [p.avatarColor, _C.rose],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight)
+                                : const LinearGradient(colors: [
+                                    _C.cardBorder,
+                                    _C.cardBorder
+                                  ]),
                           ),
-                          child: const Icon(Icons.check_rounded,
-                              color: Colors.white, size: 9),
+                          child: Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: p.avatarColor,
+                              border:
+                                  Border.all(color: _C.card, width: 2),
+                            ),
+                            child: Center(
+                                child: Text(p.name[0],
+                                    style: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 17))),
+                          ),
                         ),
-                      ),
-                  ]),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(children: [
-                          Flexible(
-                            child: Text(p.name,
-                                style: const TextStyle(
-                                    color: _C.textPrimary,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 13.5),
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                          if (p.filmmaker) ...[
-                            const SizedBox(width: 6),
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 5, vertical: 1),
+                        if (p.verified)
+                          Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: Container(
+                              width: 16,
+                              height: 16,
                               decoration: BoxDecoration(
-                                color: _C.accent.withOpacity(0.15),
-                                borderRadius: BorderRadius.circular(4),
+                                shape: BoxShape.circle,
+                                color: _C.accent,
+                                border: Border.all(
+                                    color: _C.card, width: 1.5),
                               ),
-                              child: const Text('Filmmaker',
-                                  style: TextStyle(
-                                      color: _C.accentSoft,
-                                      fontSize: 9,
-                                      fontWeight: FontWeight.w700)),
+                              child: const Icon(Icons.check_rounded,
+                                  color: Colors.white, size: 9),
+                            ),
+                          ),
+                      ]),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(children: [
+                              Flexible(
+                                child: Text(p.name,
+                                    style: const TextStyle(
+                                        color: _C.textPrimary,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 13.5),
+                                    overflow: TextOverflow.ellipsis),
+                              ),
+                              if (p.filmmaker) ...[
+                                const SizedBox(width: 6),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 5, vertical: 1),
+                                  decoration: BoxDecoration(
+                                    color:
+                                        _C.accent.withOpacity(0.15),
+                                    borderRadius:
+                                        BorderRadius.circular(4),
+                                  ),
+                                  child: const Text('Filmmaker',
+                                      style: TextStyle(
+                                          color: _C.accentSoft,
+                                          fontSize: 9,
+                                          fontWeight: FontWeight.w700)),
+                                ),
+                              ],
+                            ]),
+                            Text(
+                              p.genre != null
+                                  ? '${p.handle}  ·  ${p.genre}'
+                                  : '${p.handle}  ·  ${p.ago}',
+                              style: const TextStyle(
+                                  color: _C.textMuted, fontSize: 11),
                             ),
                           ],
-                        ]),
-                        Text(
-                          p.genre != null
-                              ? '${p.handle}  ·  ${p.genre}'
-                              : '${p.handle}  ·  ${p.ago}',
-                          style: const TextStyle(color: _C.textMuted, fontSize: 11),
                         ),
-                      ],
-                    ),
+                      ),
+                      GestureDetector(
+                        onTap: widget.onFollow,
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 220),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 14, vertical: 6),
+                          decoration: BoxDecoration(
+                            gradient: p.following
+                                ? null
+                                : const LinearGradient(colors: [
+                                    _C.accent,
+                                    Color(0xFF9B4FE0)
+                                  ]),
+                            color: p.following ? _C.cardBorder : null,
+                            borderRadius: BorderRadius.circular(9),
+                          ),
+                          child: Text(
+                            p.following ? 'Following' : 'Follow',
+                            style: TextStyle(
+                                color: p.following
+                                    ? _C.textSec
+                                    : Colors.white,
+                                fontSize: 11,
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 4),
+                      const Icon(Icons.more_vert_rounded,
+                          color: _C.textMuted, size: 20),
+                    ],
                   ),
+                ),
+
+                if (p.imageLabel != null)
                   GestureDetector(
-                    onTap: widget.onFollow,
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 220),
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-                      decoration: BoxDecoration(
-                        gradient: p.following
-                            ? null
-                            : const LinearGradient(
-                                colors: [_C.accent, Color(0xFF9B4FE0)]),
-                        color: p.following ? _C.cardBorder : null,
-                        borderRadius: BorderRadius.circular(9),
-                      ),
-                      child: Text(
-                        p.following ? 'Following' : 'Follow',
-                        style: TextStyle(
-                            color: p.following ? _C.textSec : Colors.white,
-                            fontSize: 11,
-                            fontWeight: FontWeight.w700),
-                      ),
-                    ),
+                    onDoubleTap: _doubleTapLike,
+                    child: Stack(alignment: Alignment.center, children: [
+                      _PostMedia(
+                          label: p.imageLabel!, accent: p.avatarColor),
+                      if (_showHeart)
+                        ScaleTransition(
+                          scale: _heartScale,
+                          child: const Icon(Icons.favorite_rounded,
+                              color: Colors.white, size: 90),
+                        ),
+                    ]),
                   ),
-                  const SizedBox(width: 4),
-                  const Icon(Icons.more_vert_rounded, color: _C.textMuted, size: 20),
-                ],
-              ),
-            ),
 
-            if (p.imageLabel != null)
-              GestureDetector(
-                onDoubleTap: _doubleTapLike,
-                child: Stack(alignment: Alignment.center, children: [
-                  _PostMedia(label: p.imageLabel!, accent: p.avatarColor),
-                  if (_showHeart)
-                    ScaleTransition(
-                      scale: _heartScale,
-                      child: const Icon(Icons.favorite_rounded,
-                          color: Colors.white, size: 90),
+                if (p.imageLabel == null)
+                  Container(
+                    width: double.infinity,
+                    margin: const EdgeInsets.fromLTRB(12, 0, 12, 0),
+                    padding: const EdgeInsets.all(14),
+                    decoration: BoxDecoration(
+                      color: p.avatarColor.withOpacity(0.07),
+                      borderRadius: BorderRadius.circular(14),
+                      border: Border.all(
+                          color: p.avatarColor.withOpacity(0.15),
+                          width: 0.8),
                     ),
-                ]),
-              ),
+                    child: Text(p.body,
+                        style: const TextStyle(
+                            color: _C.textPrimary,
+                            fontSize: 14,
+                            height: 1.55)),
+                  ),
 
-            if (p.imageLabel == null)
-              Container(
-                width: double.infinity,
-                margin: const EdgeInsets.fromLTRB(12, 0, 12, 0),
-                padding: const EdgeInsets.all(14),
-                decoration: BoxDecoration(
-                  color: p.avatarColor.withOpacity(0.07),
-                  borderRadius: BorderRadius.circular(14),
-                  border: Border.all(
-                      color: p.avatarColor.withOpacity(0.15), width: 0.8),
-                ),
-                child: Text(p.body,
-                    style: const TextStyle(
-                        color: _C.textPrimary, fontSize: 14, height: 1.55)),
-              ),
-
-            Padding(
-              padding: const EdgeInsets.fromLTRB(6, 6, 6, 2),
-              child: Row(children: [
-                _PostAction(
-                  icon: p.liked
-                      ? Icons.favorite_rounded
-                      : Icons.favorite_border_rounded,
-                  color: p.liked ? _C.rose : _C.textPrimary,
-                  onTap: widget.onLike,
-                ),
-                const SizedBox(width: 2),
-                _PostAction(
-                    icon: Icons.chat_bubble_outline_rounded,
-                    color: _C.textPrimary,
-                    onTap: () {}),
-                const SizedBox(width: 2),
-                _PostAction(
-                    icon: Icons.send_outlined,
-                    color: _C.textPrimary,
-                    onTap: () {}),
-                const Spacer(),
-                _PostAction(
-                  icon: p.bookmarked
-                      ? Icons.bookmark_rounded
-                      : Icons.bookmark_border_rounded,
-                  color: p.bookmarked ? _C.amber : _C.textPrimary,
-                  onTap: widget.onBookmark,
-                ),
-              ]),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.fromLTRB(14, 2, 14, 4),
-              child: Text('${_fmt(p.likes)} likes',
-                  style: const TextStyle(
-                      color: _C.textPrimary,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700)),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.fromLTRB(14, 0, 14, 4),
-              child: RichText(
-                text: TextSpan(children: [
-                  TextSpan(
-                    text: '${p.name.split(' ').first}  ',
-                    style: const TextStyle(
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(6, 6, 6, 2),
+                  child: Row(children: [
+                    _PostAction(
+                      icon: p.liked
+                          ? Icons.favorite_rounded
+                          : Icons.favorite_border_rounded,
+                      color: p.liked ? _C.rose : _C.textPrimary,
+                      onTap: widget.onLike,
+                    ),
+                    const SizedBox(width: 2),
+                    _PostAction(
+                        icon: Icons.chat_bubble_outline_rounded,
                         color: _C.textPrimary,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 13),
-                  ),
-                  TextSpan(
-                    text: p.body.split('\n').first.replaceAll(RegExp(r'\s+'), ' '),
-                    style: const TextStyle(
-                        color: _C.textSec, fontSize: 13, height: 1.4),
-                  ),
-                ]),
-              ),
-            ),
-
-            if (p.tags.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.fromLTRB(14, 0, 14, 4),
-                child: Wrap(
-                  spacing: 6,
-                  children: p.tags
-                      .map((t) => GestureDetector(
-                            onTap: () {},
-                            child: Text(t,
-                                style: const TextStyle(
-                                    color: _C.accentSoft,
-                                    fontSize: 12.5,
-                                    fontWeight: FontWeight.w600)),
-                          ))
-                      .toList(),
+                        onTap: () {}),
+                    const SizedBox(width: 2),
+                    _PostAction(
+                        icon: Icons.send_outlined,
+                        color: _C.textPrimary,
+                        onTap: () {}),
+                    const Spacer(),
+                    _PostAction(
+                      icon: p.bookmarked
+                          ? Icons.bookmark_rounded
+                          : Icons.bookmark_border_rounded,
+                      color: p.bookmarked ? _C.amber : _C.textPrimary,
+                      onTap: widget.onBookmark,
+                    ),
+                  ]),
                 ),
-              ),
 
-            Padding(
-              padding: const EdgeInsets.fromLTRB(14, 0, 14, 2),
-              child: GestureDetector(
-                onTap: () {},
-                child: Text('View all ${_fmt(p.comments)} comments',
-                    style: const TextStyle(color: _C.textMuted, fontSize: 12.5)),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(14, 1, 14, 14),
-              child: Text(p.ago,
-                  style: const TextStyle(
-                      color: _C.textMuted, fontSize: 10.5, letterSpacing: 0.2)),
-            ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(14, 2, 14, 4),
+                  child: Text('${_fmt(p.likes)} likes',
+                      style: const TextStyle(
+                          color: _C.textPrimary,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w700)),
+                ),
 
-            Container(height: 0.5, color: _C.cardBorder),
-          ]),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(14, 0, 14, 4),
+                  child: RichText(
+                    text: TextSpan(children: [
+                      TextSpan(
+                        text: '${p.name.split(' ').first}  ',
+                        style: const TextStyle(
+                            color: _C.textPrimary,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 13),
+                      ),
+                      TextSpan(
+                        text: p.body
+                            .split('\n')
+                            .first
+                            .replaceAll(RegExp(r'\s+'), ' '),
+                        style: const TextStyle(
+                            color: _C.textSec,
+                            fontSize: 13,
+                            height: 1.4),
+                      ),
+                    ]),
+                  ),
+                ),
+
+                if (p.tags.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(14, 0, 14, 4),
+                    child: Wrap(
+                      spacing: 6,
+                      children: p.tags
+                          .map((t) => GestureDetector(
+                                onTap: () {},
+                                child: Text(t,
+                                    style: const TextStyle(
+                                        color: _C.accentSoft,
+                                        fontSize: 12.5,
+                                        fontWeight: FontWeight.w600)),
+                              ))
+                          .toList(),
+                    ),
+                  ),
+
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(14, 0, 14, 2),
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Text(
+                        'View all ${_fmt(p.comments)} comments',
+                        style: const TextStyle(
+                            color: _C.textMuted, fontSize: 12.5)),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(14, 1, 14, 14),
+                  child: Text(p.ago,
+                      style: const TextStyle(
+                          color: _C.textMuted,
+                          fontSize: 10.5,
+                          letterSpacing: 0.2)),
+                ),
+
+                Container(height: 0.5, color: _C.cardBorder),
+              ]),
         ),
       ),
     );
@@ -1462,8 +1895,8 @@ class _PostMediaState extends State<_PostMedia>
     super.initState();
     _ctrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 160));
-    _scale = Tween<double>(begin: 1.0, end: 0.97)
-        .animate(CurvedAnimation(parent: _ctrl, curve: Curves.easeInOut));
+    _scale = Tween<double>(begin: 1.0, end: 0.97).animate(
+        CurvedAnimation(parent: _ctrl, curve: Curves.easeInOut));
   }
 
   @override
@@ -1498,9 +1931,13 @@ class _PostMediaState extends State<_PostMedia>
                 ),
               ),
             ),
-            Positioned(top: 0, left: 0, right: 0,
+            Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
                 child: _FilmStrip(accent: widget.accent)),
-            Positioned.fill(child: CustomPaint(painter: _GrainPainter())),
+            Positioned.fill(
+                child: CustomPaint(painter: _GrainPainter())),
             Center(
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 280),
@@ -1512,50 +1949,67 @@ class _PostMediaState extends State<_PostMedia>
                       ? widget.accent
                       : widget.accent.withOpacity(0.18),
                   border: Border.all(
-                      color: widget.accent.withOpacity(0.55), width: 2),
+                      color: widget.accent.withOpacity(0.55),
+                      width: 2),
                   boxShadow: _playing
-                      ? [BoxShadow(
-                          color: widget.accent.withOpacity(0.45),
-                          blurRadius: 22)]
+                      ? [
+                          BoxShadow(
+                              color: widget.accent.withOpacity(0.45),
+                              blurRadius: 22)
+                        ]
                       : [],
                 ),
                 child: Icon(
-                    _playing ? Icons.pause_rounded : Icons.play_arrow_rounded,
-                    color: Colors.white, size: 28),
+                    _playing
+                        ? Icons.pause_rounded
+                        : Icons.play_arrow_rounded,
+                    color: Colors.white,
+                    size: 28),
               ),
             ),
             Positioned(
-              bottom: 0, left: 0, right: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
               child: Container(
                 padding: const EdgeInsets.fromLTRB(14, 30, 14, 12),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [Colors.transparent, Colors.black.withOpacity(0.78)],
+                    colors: [
+                      Colors.transparent,
+                      Colors.black.withOpacity(0.78)
+                    ],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                   ),
                 ),
                 child: Row(children: [
-                  Expanded(child: Text(widget.label,
-                      style: const TextStyle(
-                          color: Colors.white70, fontSize: 11.5,
-                          fontWeight: FontWeight.w600, letterSpacing: 0.5))),
+                  Expanded(
+                      child: Text(widget.label,
+                          style: const TextStyle(
+                              color: Colors.white70,
+                              fontSize: 11.5,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 0.5))),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.6),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: const Text('2:34',
                         style: TextStyle(
-                            color: Colors.white, fontSize: 11,
+                            color: Colors.white,
+                            fontSize: 11,
                             fontWeight: FontWeight.w700)),
                   ),
                 ]),
               ),
             ),
             Positioned(
-              top: 30, right: 10,
+              top: 30,
+              right: 10,
               child: Container(
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
@@ -1587,7 +2041,8 @@ class _GrainPainter extends CustomPainter {
       canvas.drawCircle(
           Offset(_rng.nextDouble() * size.width,
               _rng.nextDouble() * size.height),
-          0.7, p);
+          0.7,
+          p);
     }
   }
 
@@ -1620,8 +2075,8 @@ class _PostActionState extends State<_PostAction>
     super.initState();
     _ctrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 130));
-    _scale = Tween<double>(begin: 1.0, end: 0.65)
-        .animate(CurvedAnimation(parent: _ctrl, curve: Curves.easeInOut));
+    _scale = Tween<double>(begin: 1.0, end: 0.65).animate(
+        CurvedAnimation(parent: _ctrl, curve: Curves.easeInOut));
   }
 
   @override
